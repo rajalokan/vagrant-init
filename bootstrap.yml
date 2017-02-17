@@ -1,0 +1,22 @@
+---
+# - hosts: all
+#   gather_facts: no
+#   tasks:
+#     - name: "Check if python2.7 is present"
+#       raw: "/usr/bin/python2.7 --version"
+#       ignore_errors: true
+#       changed_when: false # read-only task
+#       check_mode: no
+#       register: py27_is_installed
+#
+#     - name: "Install python2.7 since Ubuntu 16.04 doesn't ship it, if not present already"
+#       raw: "sudo apt-get update -y && sudo apt-get install -y python2.7 aptitude"
+#       retries: 5
+#       delay: 10
+#       when: py27_is_installed.rc != 0
+
+- hosts: all
+  vars:
+    - ansible_python_interpreter: /usr/bin/python2.7
+  roles:
+    - ansible_role_dotfiles
